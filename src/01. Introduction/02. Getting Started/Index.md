@@ -63,3 +63,35 @@ When configuring the services you should register of the Piranha modules you wan
             options.UseSqlite("Filename=./piranha.db"));
     }
 
+## Configure the application
+
+Once the services has been configure you initialize the Piranha CMS application. Let's again look at how it's done in the example project. Please note that generic AspNetCore setup has been omitted.
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApi api)
+    {
+        ...
+
+        // Initialize Piranha
+        App.Init(api);
+
+        // Build page types
+        var pageTypeBuilder = new Piranha.AttributeBuilder.PageTypeBuilder(api)
+            .AddType(typeof(Models.StandardPage))
+            .AddType(typeof(Models.TeaserPage));
+        pageTypeBuilder.Build()
+            .DeleteOrphans();
+
+        // Register middleware
+        app.UseStaticFiles();
+        app.UseAuthentication();
+        app.UsePiranha();
+        app.UsePiranhaManager();
+        app.UseMvc(routes =>
+        {
+            ...
+        });
+
+        ...
+    }
+
+The important part here is the **order** in which middleware is registered. The current `security` component should always be registered before the rest of the Piranha middleware, and the rest of the Piranha middleware should be registered **before** MVC. This is needed as the middleware re-writes the request and passes it on to the correct MVC route that should handle it.
