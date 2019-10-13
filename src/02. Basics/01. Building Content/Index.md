@@ -174,7 +174,7 @@ A set of flags defining additional field behavior. At the moment the only flag a
 
 #### Placeholder
 
-Optional placeholder text. The placeholder text is shown for `CheckBoxField`, `DateField`, `NumberField` and `StringField. For the CheckBox Field the placeholder text is shown as the checkbox **label**.
+Optional placeholder text. The placeholder text is shown for `CheckBoxField`, `DateField`, `NumberField` and `StringField`. For the CheckBox Field the placeholder text is shown as the checkbox **label**.
 
     [Field(Placeholder = "Please enter your full name")]
     public StringField Name { get; set; }
