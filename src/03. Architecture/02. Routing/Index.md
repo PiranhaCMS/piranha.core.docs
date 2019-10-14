@@ -1,1 +1,134 @@
 # Routing
+
+> This article cover how the basic routing mechanism of Piranha works. For more advanced scenarios, like sending custom route parameters to page instances, please refer to [Advanced Routing](routing/advanced-routing).
+
+There's no magical tricks when it comes to the routing of Piranha CMS. Piranha relies **100%** on the underlying web framework of your choice to handle the requests in the end, may it be MVC **or** Razor Pages. In the follwing examples we will asume that we have two **Page Types** defined called `BasicPage` and `AdvancedPage`, and that they have the following routes set up.
+
+**BasicPage**
+
+    using Piranha.AttributeBuilder;
+    using Piranha.Models;
+
+    [PageType(Title = "Basic Page")]
+    public class BasicPage : Page<BasicPage>
+    {
+        ...
+    }
+
+**AdvancedPage**
+
+    using Piranha.AttributeBuilder;
+    using Piranha.Models;
+
+    [PageType(Title = "Advanced Page")]
+    [PageTypeRoute(Title = "Default", Route = "/advanced")]
+    public class AdvancedPage : Page<AdvancedPage>
+    {
+        ...
+    }
+
+Also, for our examples we will asume that we have **two** pages created in our site structure with the following `slugs`. The page with the slug `/home` is also the start page of the site.
+
+    /home        // AdvancedPage
+    /about-us    // BasicPage
+
+## Default routes
+
+As you can see, the Page Type `BasicPage` does not have a route explicitly specified. When there's no route specified Piranha will rewrite the request to the **default route** of the Content Type. The following routes are default for the different core types:
+
+* `/page` for Pages.
+* `/archive` for Archive Pages.
+* `/post` for Posts.
+
+## How Does The Request Pipeline Work
+
+Here's a simple description of what happens when a request comes to a Piranha application.
+
+1. A request comes to the web application
+2. The available **middleware** tries to resolve the url to an existing `slug`.
+3. If the middleware finds a slug it checks for a specified route or uses the default route.
+4. The request is rewritten to `/<route>?id=<content_id>&...` and handed over to the underlying web framework.
+
+When a request is handled by the middleware the query string parameter `piranha_handled=true` is added to the rewritten URL. This is done to tell **other Piranha middleware** later in the pipeline that the request has been handled so there's no unnecessary processing done.
+
+## Example Requests
+
+Given the above page types, here's how the following requests would be resolved.
+
+### Start Page
+
+    GET /
+
+Given that the `StartpageMiddleware` is registered the page with the slug `/home` will be resolved. Since this page is of the type `AdvancedPage` the request will be rewritten to.
+
+    GET /advanced?id=...&startpage=true&piranha_handled=true
+
+This also means that we need something that listens to the route we've specified in our Page Type. If we're using MVC we will need an **Action** with a matching route, for example:
+
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Piranha;
+
+    public class CmsController : Controller
+    {
+        private readonly IApi _api;
+
+        public CmsController(IApi api)
+        {
+            _api = api;
+        }
+
+        ...
+
+        [Route("advanced")]
+        public async Task<IActionResult> AdvancedPage(Guid id, bool startpage)
+        {
+            var model = await _api.Pages.GetByIdAsync<AdvancedPage>(id);
+
+            if (startpage)
+                return View("StartPage", model);
+            return View(model);
+        }
+    }
+
+### Home
+
+    GET /home
+
+If the start page is referenced by `slug` the exact same thing will happen as in the above example given that the `PageMiddleware` is registered in the application pipeline. It will also be handled by the same Action in the same Controller.
+
+### About Us
+
+    GET /about-us
+
+This request will also be handled by the `PageMiddleware`, but since the page is of the type `BasicPage` the default route will be used.
+
+    GET /page?id=...&startpage=true&piranha_handled=true
+
+To handle this request we will need an **Action** in our Controller listening to the default page route as well.
+
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Piranha;
+
+    public class CmsController : Controller
+    {
+        private readonly IApi _api;
+
+        public CmsController(IApi api)
+        {
+            _api = api;
+        }
+
+        ...
+
+        [Route("page")]
+        public async Task<IActionResult> BasicPage(Guid id)
+        {
+            return View(await _api.Pages.GetByIdAsync<BasicPage>(id));
+        }
+    }
+
+Since all parameters are passed through the query string they are **optional** to handle. For example, we are not interested whether the requested page instance is the start page for the BasicPage type, so we can simply omit it from the method declaration.
