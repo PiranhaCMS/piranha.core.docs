@@ -18,7 +18,7 @@ If you want the latest source code and maybe be a part of the community and cont
 
 When configuring the services you should register of the Piranha modules you want to use. As an example, let's look at the service configuration for a project that uses `SQLite` and `Piranha.AspNetCore.Identity.SQLite`.
 
-#### Setup For Verison `7.0`
+**Setup For Version `7.0`**
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -41,7 +41,7 @@ When configuring the services you should register of the Piranha modules you wan
             options.UseSqlite("Filename=./piranha.razorweb.db"));
     }
 
-#### Setup For Version `6.0`
+**Setup For Version `6.0`**
 
     public void ConfigureServices(IServiceCollection services)
     {
