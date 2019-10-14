@@ -29,8 +29,8 @@ There's no magical tricks when it comes to the routing of Piranha CMS. Piranha r
 
 Also, for our examples we will asume that we have **two** pages created in our site structure with the following `slugs`. The page with the slug `/home` is also the start page of the site.
 
-    /home        // AdvancedPage
-    /about-us    // BasicPage
+* `/home` for AdvancedPage
+* `/about-us` for BasicPage
 
 ## Default routes
 
@@ -57,11 +57,11 @@ Given the above page types, here's how the following requests would be resolved.
 
 ### Start Page
 
-    GET /
+`GET /`
 
 Given that the `StartpageMiddleware` is registered the page with the slug `/home` will be resolved. Since this page is of the type `AdvancedPage` the request will be rewritten to.
 
-    GET /advanced?id=...&startpage=true&piranha_handled=true
+`GET /advanced?id=...&startpage=true&piranha_handled=true`
 
 This also means that we need something that listens to the route we've specified in our Page Type. If we're using MVC we will need an **Action** with a matching route, for example:
 
@@ -94,17 +94,17 @@ This also means that we need something that listens to the route we've specified
 
 ### Home
 
-    GET /home
+`GET /home`
 
 If the start page is referenced by `slug` the exact same thing will happen as in the above example given that the `PageMiddleware` is registered in the application pipeline. It will also be handled by the same Action in the same Controller.
 
 ### About Us
 
-    GET /about-us
+`GET /about-us`
 
 This request will also be handled by the `PageMiddleware`, but since the page is of the type `BasicPage` the default route will be used.
 
-    GET /page?id=...&startpage=true&piranha_handled=true
+`GET /page?id=...&startpage=true&piranha_handled=true`
 
 To handle this request we will need an **Action** in our Controller listening to the default page route as well.
 
