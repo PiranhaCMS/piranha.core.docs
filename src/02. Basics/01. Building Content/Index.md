@@ -40,20 +40,22 @@ public class MyPage : Page<MyPage>
 
 #### Incorrect Implementation
 
-    using Piranha.AttributeBuilder;
-    using Piranha.Models;
+~~~ csharp
+using Piranha.AttributeBuilder;
+using Piranha.Models;
 
-    public class MyBody
-    {
-        [Field]
-        public HtmlField Body { get; set; }
-    }
+public class MyBody
+{
+    [Field]
+    public HtmlField Body { get; set; }
+}
 
-    public class MyPage : Page<MyPage>
-    {
-        [Region]
-        public MyBody HtmlBody { get; set; }
-    }
+public class MyPage : Page<MyPage>
+{
+    [Region]
+    public MyBody HtmlBody { get; set; }
+}
+~~~
 
 ### Region Properties
 
@@ -63,26 +65,30 @@ When defining a region with the `RegionAttribute` you can set the following prop
 
 Optional title to be shown in the manager interface. If this property is left empty the **property name** is used. The example below shows a single field region in a Content Type.
 
-    [Region(Title = "Main Content")]
-    public MarkdownField MainContent { get; set; }
+~~~ csharp
+[Region(Title = "Main Content")]
+public MarkdownField MainContent { get; set; }
+~~~
 
 #### ListTitle
 
 The optional **field name** of a composite region that should be used when rendering the collapsed list items in the manager interface. The example below shows a **composite region** that is made up of a `StringField` and a `TextField`.
 
-    public class MyRegion
-    {
-        [Field]
-        public StringField Title { get; set; }
+~~~ csharp
+public class MyRegion
+{
+    [Field]
+    public StringField Title { get; set; }
 
-        [Field]
-        public TextField Body { get; set; }
-    }
+    [Field]
+    public TextField Body { get; set; }
+}
 
-    ...
+...
 
-    [Region(ListTitle = "Title")]
-    public IList<MyRegion> Teasers { get; set; }
+[Region(ListTitle = "Title")]
+public IList<MyRegion> Teasers { get; set; }
+~~~
 
 #### ListExpand
 
