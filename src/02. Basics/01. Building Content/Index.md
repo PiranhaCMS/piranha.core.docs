@@ -26,15 +26,17 @@ When defining single field regions, the field type **must** be referenced direct
 
 #### Correct Implementation
 
-    using Piranha.AttributeBuilder;
-    using Piranha.Models;
+~~~ csharp
+using Piranha.AttributeBuilder;
+using Piranha.Models;
 
-    [PageType]
-    public class MyPage : Page<MyPage>
-    {
-        [Region]
-        public HtmlField Body { get; set; }
-    }
+[PageType]
+public class MyPage : Page<MyPage>
+{
+    [Region]
+    public HtmlField Body { get; set; }
+}
+~~~
 
 #### Incorrect Implementation
 
