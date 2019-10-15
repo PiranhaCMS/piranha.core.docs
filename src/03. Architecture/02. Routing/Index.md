@@ -6,26 +6,30 @@ There's no magical tricks when it comes to the routing of Piranha CMS. Piranha r
 
 **BasicPage**
 
-    using Piranha.AttributeBuilder;
-    using Piranha.Models;
+~~~ csharp
+using Piranha.AttributeBuilder;
+using Piranha.Models;
 
-    [PageType(Title = "Basic Page")]
-    public class BasicPage : Page<BasicPage>
-    {
-        ...
-    }
+[PageType(Title = "Basic Page")]
+public class BasicPage : Page<BasicPage>
+{
+    ...
+}
+~~~
 
 **AdvancedPage**
 
-    using Piranha.AttributeBuilder;
-    using Piranha.Models;
+~~~ csharp
+using Piranha.AttributeBuilder;
+using Piranha.Models;
 
-    [PageType(Title = "Advanced Page")]
-    [PageTypeRoute(Title = "Default", Route = "/advanced")]
-    public class AdvancedPage : Page<AdvancedPage>
-    {
-        ...
-    }
+[PageType(Title = "Advanced Page")]
+[PageTypeRoute(Title = "Default", Route = "/advanced")]
+public class AdvancedPage : Page<AdvancedPage>
+{
+    ...
+}
+~~~
 
 Also, for our examples we will asume that we have **two** pages created in our site structure with the following `slugs`. The page with the slug `/home` is also the start page of the site.
 
@@ -65,32 +69,34 @@ Given that the `StartpageMiddleware` is registered the page with the slug `/home
 
 This also means that we need something that listens to the route we've specified in our Page Type. If we're using MVC we will need an **Action** with a matching route, for example:
 
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Piranha;
+~~~ csharp
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Piranha;
 
-    public class CmsController : Controller
+public class CmsController : Controller
+{
+    private readonly IApi _api;
+
+    public CmsController(IApi api)
     {
-        private readonly IApi _api;
-
-        public CmsController(IApi api)
-        {
-            _api = api;
-        }
-
-        ...
-
-        [Route("advanced")]
-        public async Task<IActionResult> AdvancedPage(Guid id, bool startpage)
-        {
-            var model = await _api.Pages.GetByIdAsync<AdvancedPage>(id);
-
-            if (startpage)
-                return View("StartPage", model);
-            return View(model);
-        }
+        _api = api;
     }
+
+    ...
+
+    [Route("advanced")]
+    public async Task<IActionResult> AdvancedPage(Guid id, bool startpage)
+    {
+        var model = await _api.Pages.GetByIdAsync<AdvancedPage>(id);
+
+        if (startpage)
+            return View("StartPage", model);
+        return View(model);
+    }
+}
+~~~
 
 ### Home
 
@@ -108,27 +114,29 @@ This request will also be handled by the `PageMiddleware`, but since the page is
 
 To handle this request we will need an **Action** in our Controller listening to the default page route as well.
 
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Piranha;
+~~~ csharp
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Piranha;
 
-    public class CmsController : Controller
+public class CmsController : Controller
+{
+    private readonly IApi _api;
+
+    public CmsController(IApi api)
     {
-        private readonly IApi _api;
-
-        public CmsController(IApi api)
-        {
-            _api = api;
-        }
-
-        ...
-
-        [Route("page")]
-        public async Task<IActionResult> BasicPage(Guid id)
-        {
-            return View(await _api.Pages.GetByIdAsync<BasicPage>(id));
-        }
+        _api = api;
     }
+
+    ...
+
+    [Route("page")]
+    public async Task<IActionResult> BasicPage(Guid id)
+    {
+        return View(await _api.Pages.GetByIdAsync<BasicPage>(id));
+    }
+}
+~~~
 
 Since all parameters are passed through the query string they are **optional** to handle. For example, we are not interested whether the requested page instance is the start page for the BasicPage type, so we can simply omit it from the method declaration.
