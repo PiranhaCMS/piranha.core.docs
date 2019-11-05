@@ -9,4 +9,4 @@ For everything to work as smooth as possible you need to follow the syntax of th
 * All files or folders **must exactly** follow the syntax `xx. Title`, where `xx` is the sort order of the item.
 * All files must be in markdown `.md`.
 * Folder pages that should also have content must include a `Index.md`
-* URL's to images or other content **must** be absolute URL's and not hosted in this repo.
+* All assets (images etc) must be put in the `_assets` folder.
