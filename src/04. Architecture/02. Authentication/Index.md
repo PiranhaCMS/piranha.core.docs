@@ -19,7 +19,7 @@ THe following claims define the different actions the logged in user can perform
 
 ### Basic
 
-* `PiranhaAdmin`
+* `PiranhaAdmin` If the user has access to the manager interface
 
 ### Aliases
 
