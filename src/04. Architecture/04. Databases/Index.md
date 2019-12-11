@@ -15,7 +15,7 @@ This way we try to stay clear of things that we know are implemented differently
 To use the standard repositories for `Entity Framework Core` you must include the following package in your application:
 
 ~~~ csharp
-<PackageReference Include="Piranha.Data.EF" Version="7.0.2" />
+PM> install-package Piranha.Data.EF
 ~~~
 
 ## Official Support
