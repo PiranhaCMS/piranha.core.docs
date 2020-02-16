@@ -6,6 +6,45 @@ We provide two different packages for handling authentication, one for developme
 
 To read more about how the implement custom authentication services for your application, please refer to [Authentication](../extensions/authentication) under the Extensions section.
 
+## Adding Application Policies
+
+Besides the policies used by the default pages in the manager interface you can add custom policies for you application, both for custom manager pages **or** for securing pages in your application.
+
+### Adding Application Policies
+
+The application policies you add will be available when you edit and set up **Roles** in the manager if you're using the `Identity` package. These policies will also be available in the settings for you Pages & Posts and can be used for securing certain instances of your content. This should be added in your `Startup.cs`.
+
+~~~ csharp
+App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
+{
+    Name = "WebUser",
+    Title = "Web User"
+});
+~~~
+
+The first name is the main category you want to group your permissions in and can be anything you like. In this example we've choosen the name "Application".
+
+### Adding Manager Policies
+
+Manager policies works in the same way as application policies, the only difference is that you set the property `IsInternal` to `true`. By doing this the policies are not shown when choosing policies for your public pages & posts and should only be used when validating if the current manager should have access to something in the manager interface.
+
+~~~ csharp
+App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
+{
+    Category = "My Manager Feature",
+    Name = "EditStuff",
+    Title = "Edit Stuff",
+    IsInternal = true
+});
+App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
+{
+    Category = "My Manager Feature",
+    Name = "DeleteStuff",
+    Title = "Delete Stuff",
+    IsInternal = true
+});
+~~~
+
 ## Core Claims
 
 The core Piranha application has two Claims that are used when trying to preview unpublished content.
