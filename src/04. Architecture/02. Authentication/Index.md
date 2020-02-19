@@ -6,13 +6,13 @@ We provide two different packages for handling authentication, one for developme
 
 To read more about how the implement custom authentication services for your application, please refer to [Authentication](../extensions/authentication) under the Extensions section.
 
-## Adding Application Policies
+## Adding Permissions
 
-Besides the policies used by the default pages in the manager interface you can add custom policies for you application, both for custom manager pages **or** for securing pages in your application.
+Besides the claims used by the default pages in the manager interface you can add custom claims for you application, both for custom manager pages **or** for securing pages in your application.
 
-### Adding Application Policies
+### Adding Application Claims
 
-The application policies you add will be available when you edit and set up **Roles** in the manager if you're using the `Identity` package. These policies will also be available in the settings for you Pages & Posts and can be used for securing certain instances of your content. This should be added in your `Startup.cs`.
+The application claims you add will be available when you edit and set up **Roles** in the manager if you're using the `Identity` package. These claims will also be available in the settings for your Pages & Posts and can be used for securing certain instances of your content. This should be added in your `Startup.cs`.
 
 ~~~ csharp
 App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
@@ -24,9 +24,9 @@ App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
 
 The first name is the main category you want to group your permissions in and can be anything you like. In this example we've choosen the name "Application".
 
-### Adding Manager Policies
+### Adding Manager Claims
 
-Manager policies works in the same way as application policies, the only difference is that you set the property `IsInternal` to `true`. By doing this the policies are not shown when choosing policies for your public pages & posts and should only be used when validating if the current manager should have access to something in the manager interface.
+Manager claims works in the same way as application clai,s, the only difference is that you set the property `IsInternal` to `true`. By doing this they are not shown when specifying permissions for your public pages & posts and should only be used when validating if the current manager should have access to something in the manager interface.
 
 ~~~ csharp
 App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
