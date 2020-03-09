@@ -26,7 +26,7 @@ The first name is the main category you want to group your permissions in and ca
 
 ### Adding Manager Claims
 
-Manager claims works in the same way as application clai,s, the only difference is that you set the property `IsInternal` to `true`. By doing this they are not shown when specifying permissions for your public pages & posts and should only be used when validating if the current manager should have access to something in the manager interface.
+Manager claims works in the same way as application claims, the only difference is that you set the property `IsInternal` to `true`. By doing this they are not shown when specifying permissions for your public pages & posts and should only be used when validating if the current manager should have access to something in the manager interface.
 
 ~~~ csharp
 App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
@@ -54,7 +54,7 @@ The core Piranha application has two Claims that are used when trying to preview
 
 ## Manager Claims
 
-THe following claims define the different actions the logged in user can perform in the manager interface. To assign these claims to different users you setup `Roles` which have access to different `Claims`. A user can have several roles.
+The following claims define the different actions the logged in user can perform in the manager interface. To assign these claims to different users you setup `Roles` which have access to different `Claims`. A user can have several roles.
 
 ### Basic
 
