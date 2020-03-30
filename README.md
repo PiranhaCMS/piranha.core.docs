@@ -10,3 +10,12 @@ For everything to work as smooth as possible you need to follow the syntax of th
 * All files must be in markdown `.md`.
 * Folder pages that should also have content must include a `Index.md`.
 * All assets (images etc) must be put in the `_assets` folder.
+
+## Code of Conduct
+
+This project has adopted the code of conduct defined by the [Contributor Covenant](http://contributor-covenant.org/) to clarify expected behavior in our community.
+For more information see the [.NET Foundation Code of Conduct](http://www.dotnetfoundation.org/code-of-conduct).
+
+## .NET Foundation
+
+This project is supported by the [.NET Foundation](http://www.dotnetfoundation.org).
