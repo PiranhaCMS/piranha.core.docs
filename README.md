@@ -9,7 +9,7 @@ For everything to work as smooth as possible you need to follow the syntax of th
 * All files or folders **must exactly** follow the syntax `xx. Title`, where `xx` is the sort order of the item.
 * All files must be in markdown `.md`.
 * Folder pages that should also have content must include a `Index.md`.
-* All assets (images etc) must be put in the `_assets` folder.
+* All assets (images etc) must be stored in the `_assets` folder.
 
 ## Code of Conduct
 
