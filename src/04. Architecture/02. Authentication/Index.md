@@ -29,14 +29,14 @@ The first name is the main category you want to group your permissions in and ca
 Manager claims works in the same way as application claims, the only difference is that you set the property `IsInternal` to `true`. By doing this they are not shown when specifying permissions for your public pages & posts and should only be used when validating if the current manager should have access to something in the manager interface.
 
 ~~~ csharp
-App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
+App.Permissions["Manager"].Add(new Piranha.Security.PermissionItem
 {
     Category = "My Manager Feature",
     Name = "EditStuff",
     Title = "Edit Stuff",
     IsInternal = true
 });
-App.Permissions["Application"].Add(new Piranha.Security.PermissionItem
+App.Permissions["Manager"].Add(new Piranha.Security.PermissionItem
 {
     Category = "My Manager Feature",
     Name = "DeleteStuff",
