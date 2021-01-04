@@ -1,20 +1,27 @@
-on: 
+on:
   push:
     branches:
-      - master
-name: Publish Website
+      - "**"
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  build:
     runs-on: ubuntu-latest
+    name: Publish Website
     steps:
     - uses: actions/checkout@master
-    - name: FTP-Deploy-Action
+
+    # Get branch
+    - name: Get Branch
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
+    # FTP Copy
+    - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
         FTP_SERVER: ${{ secrets.FTP_SERVER }}
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        REMOTE_DIR: site/wwwroot/docs/
+        REMOTE_DIR: site/wwwroot/docs/${{ steps.extract_branch.outputs.branch }}
         ARGS: --delete
         # --delete arg will delete files on the server if you've deleted them in
