@@ -25,3 +25,10 @@ jobs:
         REMOTE_DIR: site/wwwroot/docs/${{ steps.extract_branch.outputs.branch }}
         ARGS: --delete
         # --delete arg will delete files on the server if you've deleted them in
+
+    # Trigger Server Refresh
+    - name: Trigger Refresh
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: 'https://piranhacms.org/api/reload/${{ steps.extract_branch.outputs.branch }}'
+        method: 'GET'
