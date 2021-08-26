@@ -1,6 +1,25 @@
 # Authentication
 
-Piranha doesn't really care **how** your users gets authenticated, whether it's the end users of your application or the administrators accessing the manager interface. Instead, Piranha uses a claims based security model to check what the current user has access to.
+Piranha doesn't really care **how** your users gets authenticated, whether it's the end users of your application or the administrators accessing the manager interface. Instead, by default Piranha uses a claims based security model to check what the current user has access to. If you wish to use an alternative -such as Role based authorization, you can provide a delegate via the overloaded `IServiceCollection.AddPiranhaManager()` method in your Startup.cs file:
+
+~~~ csharp
+IServiceCollection.AddPiranhaManager((permission, options) =>
+{
+    switch (permission)
+    {
+        //for managing visitor comments, CommentModerator role membership is required (or Administrator role)
+        case Permission.Comments:
+        case Permission.CommentsApprove:
+        case Permission.CommentsDelete:
+            options.RequireRole("CommentModerator", "Administrator");
+            break;
+        //all other policies/permission require membership of the Administrator role)
+        default:
+            options.RequireRole("Administrator");
+            break;
+    }
+});
+~~~
 
 We provide two different packages for handling authentication, one for development and one for production scenarios.
 
