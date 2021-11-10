@@ -4,7 +4,7 @@
 
 Blocks are the main building piece for **pages** and **posts**, it's the part of the content that the editor has total control over. Blocks are small chunks of content that can be added, deleted and reordered. As the content administrators choose for themselves which blocks they add you don't specify anywhere on the Content Type which blocks to use.
 
-For information on how to build your own blocks, please refer to [Blocks](../extensions/blocks) in the section **Extensions**.
+For information on how to build your own blocks, please refer to [Custom Blocks](custom-blocks).
 
 ## Included Blocks
 
@@ -32,7 +32,7 @@ page.Blocks.Add(new AudioBlock
 
 The block displays an audio player. When hovering the block the filename together with buttons for opening the media dialog and removing the currently selected audio file is shown.
 
-![Audio Block](../_assets/blocks/block-audio.jpg)
+![Audio Block](../../_assets/blocks/block-audio.jpg)
 
 ### Columns
 
@@ -62,7 +62,7 @@ page.Blocks.Add(new ColumnBlock
 });
 ~~~
 
-![Column Block](../_assets/blocks/block-columns.jpg)
+![Column Block](../../_assets/blocks/block-columns.jpg)
 
 ### Content
 
@@ -83,7 +83,7 @@ page.Blocks.Add(new HtmlBlock
 
 The block is displayed as a **one column** HTML-editor in the manager. You can read more about the default HTML-editor Piranha uses [here](../components/html-editor).
 
-![Content Block](../_assets/blocks/block-content.jpg)
+![Content Block](../../_assets/blocks/block-content.jpg)
 
 ### Gallery
 
@@ -91,7 +91,7 @@ The block is displayed as a **one column** HTML-editor in the manager. You can r
 
 The Gallery block is a built in `Block Group` that can contain one or more image blocks. It uses the `MasterDetail` display mode where the items are shown in a list to the left and the currently selected item is shown to the right.
 
-![Gallery Block](../_assets/blocks/block-gallery.jpg)
+![Gallery Block](../../_assets/blocks/block-gallery.jpg)
 
 ### Image
 
@@ -114,7 +114,7 @@ page.Blocks.Add(new ImageBlock
 
 The block displays an image preview. When hovering the block the filename together with buttons for setting prefered aspect, opening the media dialog and removing the currently selected image is shown.
 
-![Image Block](../_assets/blocks/block-image.jpg)
+![Image Block](../../_assets/blocks/block-image.jpg)
 
 #### Prefered Aspect
 
@@ -157,7 +157,7 @@ page.Blocks.Add(new PageBlock
 The block is displayed as a preview using the default `PrimaryImage` and `Excerpt` fields. If these fields are empty
 placeholders for these fields will be shown.
 
-![Page Link Block](../_assets/blocks/block-pagelink.jpg)
+![Page Link Block](../../_assets/blocks/block-pagelink.jpg)
 
 ### Post Link
 
@@ -180,7 +180,7 @@ page.Blocks.Add(new PostBlock
 The block is displayed as a preview using the default `PrimaryImage` and `Excerpt` fields. If these fields are empty
 placeholders for these fields will be shown.
 
-![Post Link Block](../_assets/blocks/block-postlink.jpg)
+![Post Link Block](../../_assets/blocks/block-postlink.jpg)
 
 ### Quote
 
@@ -201,7 +201,7 @@ page.Blocks.Add(new QuoteBlock
 
 The block is displayed as an inline textarea in the manager with a somewhat larget font size.
 
-![Quote Block](../_assets/blocks/block-quote.jpg)
+![Quote Block](../../_assets/blocks/block-quote.jpg)
 
 ### Separator
 
@@ -209,7 +209,7 @@ The block is displayed as an inline textarea in the manager with a somewhat larg
 
 The block is used to separate content blocks and does not have any content of its own. In a web application it is often rendered as a `<hr>` tag.
 
-![Separator Block](../_assets/blocks/block-separator.jpg)
+![Separator Block](../../_assets/blocks/block-separator.jpg)
 
 ### Text
 
@@ -230,7 +230,7 @@ page.Blocks.Add(new TextBlock
 
 The block is displayed as an inline textarea in the manager with a monospace typeface.
 
-![Text Block](../_assets/blocks/block-text.jpg)
+![Text Block](../../_assets/blocks/block-text.jpg)
 
 ### Video
 
@@ -253,4 +253,4 @@ page.Blocks.Add(new VideoBlock
 
 The block displays a video preview. When hovering the block the filename together with buttons for opening the media dialog and removing the currently selected video is shown. Note that the block **only** works for videos uploaded into Piranha as media assets and does not accept videos from other streaming services.
 
-![Video Block](../_assets/blocks/block-video.jpg)
+![Video Block](../../_assets/blocks/block-video.jpg)
