@@ -85,7 +85,7 @@ public MyPage : Page<MyPage>
 
 The Audio Field works **exactly** like the Document Field except that the media library is filtered to only show the available audio assets to the editor.
 
-![Audio Field](../../_assets/fields/field-audio.jpg)
+![Audio Field](../_assets/fields/field-audio.jpg)
 
 ### Checkbox
 
@@ -119,7 +119,7 @@ page.MyRegion.MyBoolValue = true;
 
 The field is displayed as a checkbox in the manager for content editors. Any text that add into the `Placeholder` property of the `FieldAttribute` will be displayed to the right of the CheckBox. The field is **primarily** intended to be used in **complex regions** and not as a Single Field Region.
 
-![CheckBox Field](../../_assets/fields/field-checkbox.jpg)
+![CheckBox Field](../_assets/fields/field-checkbox.jpg)
 
 ### Color
 
@@ -145,7 +145,7 @@ page.MyColorValue = "#000";
 
 The field is displayed as a color picker in the manager interface.
 
-![Color Field](../../_assets/fields/field-color.jpg)
+![Color Field](../_assets/fields/field-color.jpg)
 
 #### Settings
 
@@ -252,7 +252,7 @@ public MyPage : Page<MyPage>
 
 The field is displayed as a **select field** in the manager with the text entered in the `Title` of the items returned from `GetList()` as the item text.
 
-![Data Select Field](../../_assets/fields/field-dataselect.jpg)
+![Data Select Field](../_assets/fields/field-dataselect.jpg)
 
 ### Date
 
@@ -286,7 +286,7 @@ page.MyRegion.MyDateValue = DateTime.Now;
 
 The field is displayed as a single line textfield with a visual **datepicker** component in the manager. This means content editors can't set a time to the field value. The field is **primarily** intended to be used in **complex regions** and not as a Single Field Region.
 
-![Date Field](../../_assets/fields/field-date.jpg)
+![Date Field](../_assets/fields/field-date.jpg)
 
 ### Document
 
@@ -356,7 +356,7 @@ The field can also be implicitly converted to a **string**, in which case it ret
 
 The field is displayed in the manager with the filename of the currently selected document and buttons for choosing a file from the media library. When opening the media library it is automatically filtered so that only **folders** and **documents** are available to the editor. The field is **primarily** intended to be used in **complex regions** and not as a Single Field Region.
 
-![Document Field](../../_assets/fields/field-document.jpg)
+![Document Field](../_assets/fields/field-document.jpg)
 
 ### Html
 
@@ -392,7 +392,7 @@ Remember that when using the value in a `view` you need to render it as **raw** 
 
 The field is displayed as a HTML Editor in the manager. The default editor shipped with the manager is provided by [TinyMCE](https://www.tiny.cloud). The field works equally well in **complex regions** as a **single field region**. For more information about the default configuration of the HTML Editor and how to customize it, please refer to [HTML Editor](../extensions/html-editor).
 
-![HTML Field](../../_assets/fields/field-html.jpg)
+![HTML Field](../_assets/fields/field-html.jpg)
 
 ### Image
 
@@ -435,7 +435,7 @@ Like the Document Field its implicit operators enable you to use it directly in 
 
 The Image Field works **exactly** like the Document Field except that the media library is filtered so that only **folders** and **images** are available to the editor.
 
-![Image Field](../../_assets/fields/field-image.jpg)
+![Image Field](../_assets/fields/field-image.jpg)
 
 ### Markdown
 
@@ -474,7 +474,7 @@ Remember that when using the HTML value in a `view` you need to render it as **r
 
 The field is displayed as a Markdown Editor with HTML preview in the manager. If the field is used in a complex region the preview and edit views are shown in **tabs**, in single field regions they are displayed **side-by-side**.
 
-![Markdown Field](../../_assets/fields/field-markdown.jpg)
+![Markdown Field](../_assets/fields/field-markdown.jpg)
 
 ### Media
 
@@ -504,7 +504,7 @@ public MyPage : Page<MyPage>
 
 The Media Field works **exactly** like the Document Field except that the media library is unfiltered and shows all available assets to the editor.
 
-![Media Field](../../_assets/fields/field-media.jpg)
+![Media Field](../_assets/fields/field-media.jpg)
 
 ### Number
 
@@ -548,7 +548,7 @@ Please note that the `int` value is **nullable** and optional to the content edi
 
 The field is displayed as a single line textfield in the manager. The field is **primarily** intended to be used in **complex regions** and not as a Single Field Region.
 
-![Number Field](../../_assets/fields/field-number.jpg)
+![Number Field](../_assets/fields/field-number.jpg)
 
 ### Page
 
@@ -600,7 +600,7 @@ if (page.MyRegion.MyPageValue.HasValue)
 
 The field is displayed in the manager with the page title of the currently selected page and buttons for choosing a page from **any of the available sitemaps**. The field is **primarily** intended to be used in **complex regions** and not as a Single Field Region.
 
-![Page Field](../../_assets/fields/field-page.jpg)
+![Page Field](../_assets/fields/field-page.jpg)
 
 ### Post
 
@@ -626,7 +626,7 @@ page.MyPost = post;
 
 The Post Field works exactly like the Page Field except that it shows the available posts from **all** post archives.
 
-![Post Field](../../_assets/fields/field-post.jpg)
+![Post Field](../_assets/fields/field-post.jpg)
 
 ### Select
 
@@ -662,7 +662,7 @@ page.Style.Value = PageStyle.Wide;
 
 The field is displayed as a **select field** in the manager with the text entered in the `DisplayAttribute` as the item text. If no attribute is defined the **enum name** is used to display the item in the select list.
 
-![Select Field](../../_assets/fields/field-select.jpg)
+![Select Field](../_assets/fields/field-select.jpg)
 
 ### String
 
@@ -695,7 +695,7 @@ page.MyRegion.MyStringValue = "Just a string";
 
 The field is displayed as a single line textfield in the manager. The field is **primarily** intended to be used in **complex regions** and not as a Single Field Region.
 
-![String Field](../../_assets/fields/field-string.jpg)
+![String Field](../_assets/fields/field-string.jpg)
 
 #### Settings
 
@@ -756,7 +756,7 @@ page.MyRegion.MyTextValue = "Just a text";
 
 The field is displayed as a multi line textfield in the manager and works equally well in **complex regions** as a **single field region**.
 
-![Text Field](../../_assets/fields/field-text.jpg)
+![Text Field](../_assets/fields/field-text.jpg)
 
 #### Settings
 
@@ -814,4 +814,4 @@ public MyPage : Page<MyPage>
 
 The Video Field works **exactly** like the Document Field except that the media library is filtered so that only **folders** and **videos** are available to the editor.
 
-![Video Field](../../_assets/fields/field-video.jpg)
+![Video Field](../_assets/fields/field-video.jpg)
