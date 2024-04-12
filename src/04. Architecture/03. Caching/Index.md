@@ -30,7 +30,7 @@ By default Piranha caches **everything** when a Cache Service is registered, but
 ##### CacheLevel.None
 
 ~~~ csharp
-Piranha.App.CacheLevel = Piranha.Caching.CacheLevel.None;
+Piranha.App.CacheLevel = Piranha.Cache.CacheLevel.None;
 ~~~
 
 Nothing is cached even if a cache service is registered.
@@ -38,7 +38,7 @@ Nothing is cached even if a cache service is registered.
 ##### CacheLevel.Minimal
 
 ~~~ csharp
-Piranha.App.CacheLevel = Piranha.Caching.CacheLevel.Minimal;
+Piranha.App.CacheLevel = Piranha.Cache.CacheLevel.Minimal;
 ~~~
 
 The following data is kept in cache:
@@ -49,7 +49,7 @@ The following data is kept in cache:
 ##### CacheLevel.Basic
 
 ~~~ csharp
-Piranha.App.CacheLevel = Piranha.Caching.CacheLevel.Basic;
+Piranha.App.CacheLevel = Piranha.Cache.CacheLevel.Basic;
 ~~~
 
 The following data is kept in cache:
@@ -62,7 +62,7 @@ The following data is kept in cache:
 ##### CacheLevel.Full
 
 ~~~ csharp
-Piranha.App.CacheLevel = Piranha.Caching.CacheLevel.Full;
+Piranha.App.CacheLevel = Piranha.Cache.CacheLevel.Full;
 ~~~
 
 Everything is kept in cache, including all Blocks and Fields for Content Types. This is the default cache level.
